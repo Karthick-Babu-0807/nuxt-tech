@@ -1,35 +1,62 @@
 {
-  "home": "Home",
-  "about": "About",
-  "services": "Services",
-  "tech_stack": "Tech Stack",
-  "contact": "Contact",
-  "nuxt_tech": "Nuxt Tech",
-  "hero_title_1": "Empowering Businesses with",
-  "hero_title_2": "Future-Proof IT Solutions",
-  "hero_description": "We help startups and enterprises build scalable, secure, and modern software solutions tailored to their goals.",
-  "get_in_touch": "Get in Touch",
-  "explore_services": "Explore Services",
-  "us": "Us",
-  "innovative_solutions": "Innovative Solutions",
-  "innovative_solutions_description": "We deliver cutting-edge IT services tailored to your business needs.",
-  "secure_and_reliable": "Secure & Reliable",
-  "secure_and_reliable_description": "Security and reliability are at the core of every project we handle.",
-  "scalable_growth": "Scalable Growth",
-  "scalable_growth_description": "Our solutions grow with your business, ensuring long-term success.",
-  "our": "Our",
-  "services_description": "We offer tailored IT solutions to help startups and enterprises grow efficiently and securely.",
-  "web_development": "Web Development",
-  "web_development_description": "Build fast, scalable, and modern web applications tailored to your needs.",
-  "cloud_integration": "Cloud Integration",
-  "cloud_integration_description": "Deploy your infrastructure on AWS, GCP, or Azure with high availability and performance.",
-  "security_solutions": "Security Solutions",
-  "security_solutions_description": "Ensure your systems are secure with the latest security practices and audits.",
-  "tech_stack_description": "We use modern, battle-tested technologies to build secure and scalable solutions.",
-  "contact_description": "Let's build something amazing together. Get in touch with us for a free consultation.",
-  "name": "Name",
-  "email": "Email",
-  "your_message": "Your message",
-  "send_message": "Send Message",
-  "all_rights_reserved": "All rights reserved."
+  "navigation": {
+    "home": "Home",
+    "about_us": "About Us",
+    "services": "Services",
+    "technologies": "Technologies",
+    "lets_talk": "Let's Talk"
+  },
+  "hero": {
+    "title_part1": "Building",
+    "title_highlight": "Product-Quality Software",
+    "title_part2_prefix": "at",
+    "title_part2_highlight": "Startup Speed",
+    "description": "We engineer scalable, modern applications with the mindset of a product team and the agility of a services company.",
+    "cta_primary": "Let's Talk",
+    "cta_secondary": "Explore Services"
+  },
+  "about_us_section": {
+    "description": "Redefining tech services with precision, ownership, and a product-first mindset.",
+    "our_approach": "Our Approach",
+    "our_approach_description": "We operate as a small expert team, ensuring personalized attention and delivery-focused execution for every client.",
+    "our_purpose": "Our Purpose",
+    "our_purpose_description": "We don't just deliver — we build product value and act as a long-term tech partner with true ownership of your systems.",
+    "our_expertise": "Our Expertise",
+    "our_expertise_description": "End-to-end product development and scalable cloud-native apps — built for startups that want speed, flexibility, and quality.",
+    "subtitle_highlight1": "Product-Quality Engineering",
+    "subtitle_highlight2": "meets Agile Service.",
+    "subtitle_highlight_description": "RUNK Technologies delivers software crafted with care and a long-term product mindset, not just quick fixes.",
+    "industries_title": "Industries We Serve",
+    "industries_description": "Our solutions are crafted for fast-moving, high-impact sectors that demand reliability, innovation, and scale."
+  },
+  "services_section": {
+    "title": "Our Services",
+    "description": "We build and scale reliable, modern digital products with depth in engineering, design, and cloud infrastructure."
+  },
+  "technologies_section": {
+    "title": "Technologies We Use",
+    "description": "We leverage cutting-edge tools and frameworks to deliver scalable, modern, and high-performance applications"
+  },
+  "contact_section": {
+    "title": "Contact Us",
+    "description": "Let's build something amazing together. Get in touch with us for a free consultation.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "your_message": "Your message",
+      "cta": "Send Message"
+    }
+  },
+  "footer": {
+    "company_name": "RUNK Technology Pvt. Ltd.",
+    "description": "Product-Quality Engineering. Service-Based Model.",
+    "quick_links": "Quick Links",
+    "copy_rights": "© 2025 RUNK Technology.",
+    "all_rights_reserved": "All rights reserved.",
+    "contact": {
+      "title": "Contact",
+      "email": "Email",
+      "phone": "Phone"
+    }
+  }
 }

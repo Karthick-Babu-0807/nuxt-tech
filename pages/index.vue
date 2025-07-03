@@ -3,7 +3,7 @@
     <HeroSection />
     <AboutSection />
     <ServicesSection />
-    <TechStackSection />
+    <TechnologiesSection />
     <ContactSection />
   </div>
 </template>
