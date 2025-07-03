@@ -1,123 +1,90 @@
-<script setup lang="ts">
-const navRef = ref<HTMLElement | null>(null);
+<script setup>
+const menuOpen = ref(false);
+const scrolled = ref(false);
+
+function closeMenu() {
+  menuOpen.value = false;
+}
+
+const { scrollToEl } = useSmoothScroll();
 
 onMounted(() => {
+  const handleScroll = () => {
+    scrolled.value = window.scrollY > 10;
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  handleScroll();
+
+  onBeforeUnmount(() => {
+    window.removeEventListener("scroll", handleScroll);
+  });
+});
+
+watch(menuOpen, () => {
+  const menuIcon = document.querySelector("#menuIcon");
+  const closeIcon = document.querySelector("#closeIcon");
+
+  if (!menuIcon || !closeIcon)
+    return;
+
   useAnime({
-    targets: navRef.value,
-    translateY: [-40, 0],
+    targets: [menuIcon, closeIcon],
     opacity: [0, 1],
-    duration: 700,
+    duration: 300,
     easing: "easeOutExpo",
   });
 });
 </script>
 
 <template>
-  <nav ref="navRef" class="navbar bg-base-100 text-base-content shadow-md sticky top-0 z-50 backdrop-blur-lg">
-    <!-- Navbar Start: Logo -->
-    <div class="navbar-start">
-      <NuxtLink to="/" class="btn btn-ghost text-xl tracking-wide font-semibold">
-        {{ $t('nuxt_tech') }}
-      </NuxtLink>
+  <header
+    class="sticky top-0 z-50 text-base-content shadow-md transition-colors duration-300"
+    :class="[scrolled ? 'bg-base-100' : 'bg-transparent']"
+  >
+    <div class="navbar px-4 md:px-8 container mx-auto">
+      <div class="flex-1">
+        <a href="#home" class="text-xl font-bold text-primary cursor-pointer" @click.prevent="scrollToEl('#home')">
+          <img src="/assets/images/runk-logo.png" alt="RUNK Logo" class="h-12 md:h-20">
+        </a>
+      </div>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex gap-6 items-center text-sm font-medium">
+        <a href="#home" class="hover:text-primary" @click.prevent="scrollToEl('#home')">{{ $t("navigation.home") }}</a>
+        <a href="#about" class="hover:text-primary" @click.prevent="scrollToEl('#about')">{{ $t("navigation.about_us")
+        }}</a>
+        <a href="#services" class="hover:text-primary" @click.prevent="scrollToEl('#services')">{{
+          $t("navigation.services") }}</a>
+        <a href="#technologies" class="hover:text-primary" @click.prevent="scrollToEl('#technologies')">{{
+          $t("navigation.technologies") }}</a>
+        <a href="#contact" class="btn btn-primary ml-4" @click.prevent="scrollToEl('#contact')">{{
+          $t("navigation.lets_talk") }}</a>
+      </div>
+
+      <!-- Mobile Menu Icon -->
+      <div class="md:hidden">
+        <button class="btn btn-sm btn-ghost" @click="menuOpen = !menuOpen">
+          <Icon v-show="!menuOpen" id="menuIcon" name="ph:list-duotone" class="w-6 h-6 transition-all duration-300" />
+          <Icon v-show="menuOpen" id="closeIcon" name="ph:x-duotone" class="w-6 h-6 transition-all duration-300" />
+        </button>
+      </div>
     </div>
 
-    <!-- Navbar Center: Desktop Links -->
-    <div class="navbar-center hidden lg:flex">
-      <ul class="menu menu-horizontal px-1 gap-3 text-sm font-medium">
-        <li>
-          <NuxtLink to="#home" class="nav-link">
-            {{ $t('home') }}
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="#about" class="nav-link">
-            {{ $t('about') }}
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="#services" class="nav-link">
-            {{ $t('services') }}
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="#tech" class="nav-link">
-            {{ $t('tech_stack') }}
-          </NuxtLink>
-        </li>
-        <li>
-          <NuxtLink to="#contact" class="nav-link">
-            {{ $t('contact') }}
-          </NuxtLink>
-        </li>
-      </ul>
+    <!-- Mobile Menu -->
+    <div v-if="menuOpen" class="md:hidden bg-base-100 text-base-content shadow px-6 py-4 space-y-2">
+      <a href="#home" class="block hover:text-primary" @click.prevent="closeMenu(); scrollToEl('#home')">{{
+        $t("navigation.home") }}</a>
+      <a href="#about" class="block hover:text-primary" @click.prevent="closeMenu(); scrollToEl('#about')">{{
+        $t("navigation.about_us") }}</a>
+      <a href="#services" class="block hover:text-primary" @click.prevent="closeMenu(); scrollToEl('#services')">{{
+        $t("navigation.services") }}</a>
+      <a
+        href="#technologies" class="block hover:text-primary"
+        @click.prevent="closeMenu(); scrollToEl('#technologies')"
+      >{{ $t("navigation.technologies") }}</a>
+      <a href="#contact" class="btn btn-primary w-full mt-2" @click.prevent="closeMenu(); scrollToEl('#contact')">{{
+        $t("navigation.lets_talk") }}</a>
     </div>
-
-    <!-- Navbar End: Utilities (Desktop) -->
-    <div class="navbar-end hidden lg:flex items-center gap-3">
-      <AppLanguageToggle />
-      <AppThemeToggle />
-    </div>
-
-    <!-- Navbar End: Mobile Menu -->
-    <div class="navbar-end lg:hidden">
-      <details class="dropdown dropdown-end">
-        <summary class="btn btn-ghost p-2 rounded-btn">
-          <Icon name="ph:list-duotone" class="w-6 h-6" />
-        </summary>
-        <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-          <li>
-            <NuxtLink to="#home">
-              {{ $t('home') }}
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="#about">
-              {{ $t('about') }}
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="#services">
-              {{ $t('services') }}
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="#tech">
-              {{ $t('tech_stack') }}
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="#contact">
-              {{ $t('contact') }}
-            </NuxtLink>
-          </li>
-          <li class="flex flex-row justify-between items-center px-2 pt-2">
-            <AppLanguageToggle />
-            <AppThemeToggle />
-          </li>
-        </ul>
-      </details>
-    </div>
-  </nav>
+  </header>
 </template>
-
-<style scoped>
-.nav-link {
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.nav-link::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0%;
-  height: 2px;
-  background-color: currentColor;
-  transition: width 0.3s ease-in-out;
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-</style>

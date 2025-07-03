@@ -9,6 +9,15 @@ export default defineNuxtConfig({
     "@hypernym/nuxt-anime",
     "@nuxtjs/color-mode",
     "@nuxtjs/i18n",
+    ["@nuxtjs/google-fonts", {
+      display: "swap",
+      families: {
+        Inter: [400, 600, 700],
+        Roboto: true,
+        Lato: true,
+        Poppins: [400, 500, 600, 700],
+      },
+    }],
   ],
   css: ["~/assets/css/main.css"],
   eslint: {
