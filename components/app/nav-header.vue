@@ -8,17 +8,17 @@ function closeMenu() {
 
 const { scrollToEl } = useSmoothScroll();
 
-onMounted(() => {
-  const handleScroll = () => {
-    scrolled.value = window.scrollY > 10;
-  };
+function handleScroll() {
+  scrolled.value = window.scrollY > 10;
+}
 
+onMounted(() => {
   window.addEventListener("scroll", handleScroll);
   handleScroll();
+});
 
-  onBeforeUnmount(() => {
-    window.removeEventListener("scroll", handleScroll);
-  });
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
 });
 
 watch(menuOpen, () => {
@@ -64,15 +64,20 @@ watch(menuOpen, () => {
 
       <!-- Mobile Menu Icon -->
       <div class="md:hidden">
-        <button class="btn btn-sm btn-ghost" @click="menuOpen = !menuOpen">
-          <Icon v-show="!menuOpen" id="menuIcon" name="ph:list-duotone" class="w-6 h-6 transition-all duration-300" />
-          <Icon v-show="menuOpen" id="closeIcon" name="ph:x-duotone" class="w-6 h-6 transition-all duration-300" />
+        <button
+          class="btn btn-sm btn-ghost bg-transparent hover:bg-transparent
+         focus:outline-none focus:ring-0 focus:bg-transparent
+         active:outline-none active:ring-0 active:bg-transparent
+         shadow-none border-none" @click="menuOpen = !menuOpen"
+        >
+          <Icon v-show="!menuOpen" id="menuIcon" name="ph:list" class="transition-transform duration-300 ease-in-out" size="32" />
+          <Icon v-show="menuOpen" id="closeIcon" name="ph:x" class="transition-transform duration-300 ease-in-out" size="32" />
         </button>
       </div>
     </div>
 
     <!-- Mobile Menu -->
-    <div v-if="menuOpen" class="md:hidden bg-base-100 text-base-content shadow px-6 py-4 space-y-2">
+    <div v-if="menuOpen" class="md:hidden min-h-screen text-base-content shadow px-6 py-4 space-y-2">
       <a href="#home" class="block hover:text-primary" @click.prevent="closeMenu(); scrollToEl('#home')">{{
         $t("navigation.home") }}</a>
       <a href="#about" class="block hover:text-primary" @click.prevent="closeMenu(); scrollToEl('#about')">{{
