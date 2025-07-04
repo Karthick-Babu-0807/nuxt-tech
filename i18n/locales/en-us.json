@@ -50,13 +50,10 @@
   "footer": {
     "company_name": "RUNK Technology Pvt. Ltd.",
     "description": "Product-Quality Engineering. Service-Based Model.",
+    "industries": "Industries",
     "quick_links": "Quick Links",
     "copy_rights": "© 2025 RUNK Technology.",
     "all_rights_reserved": "All rights reserved.",
-    "contact": {
-      "title": "Contact",
-      "email": "Email",
-      "phone": "Phone"
-    }
+    "contact": "Contact"
   }
 }
